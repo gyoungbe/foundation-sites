@@ -102,16 +102,31 @@ class Reveal {
     } else {
       left = parseInt(this.options.hOffset, 10);
     }
+    // if (this.options.vOffset === 'auto') {
+    //   if (height > outerHeight) {
+    //     top = parseInt(Math.min(100, outerHeight / 10), 10);
+    //   } else {
+    //     top = parseInt((outerHeight - height) / 4, 10);
+    //   }
+    // } else {
+    //   top = parseInt(this.options.vOffset, 10);
+    // }
+    // this.$element.css({top: top + 'px'});
+
     if (this.options.vOffset === 'auto') {
       if (height > outerHeight) {
         top = parseInt(Math.min(100, outerHeight / 10), 10);
       } else {
         top = parseInt((outerHeight - height) / 4, 10);
       }
-    } else {
+    } else if (this.options.vOffset !== null) {
       top = parseInt(this.options.vOffset, 10);
     }
-    this.$element.css({top: top + 'px'});
+
+    if (top !== null) {
+      this.$element.css({top: top + 'px'});
+    }
+
     // only worry about left if we don't have an overlay or we havea  horizontal offset,
     // otherwise we're perfectly in the middle
     if(!this.$overlay || (this.options.hOffset !== 'auto')) {
